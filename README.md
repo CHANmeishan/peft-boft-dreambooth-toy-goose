@@ -3,7 +3,7 @@
 Parameter-efficient fine-tuning of Stable Diffusion v1.5 using BOFT (Butterfly Orthogonal Fine-Tuning) for subject-driven generation
 
 
-##Overview
+## Overview
 
 Fine-tuned `runwayml/stable-diffusion-v1-5` using \*\*Butterfly Orthogonal Fine-Tuning (BOFT)\*\* from Hugging Face PEFT for subject-driven image generation.
 
@@ -12,7 +12,7 @@ Fine-tuned `runwayml/stable-diffusion-v1-5` using \*\*Butterfly Orthogonal Fine-
 - Training steps: 610
 
 
-##Repository Structure
+## Repository Structure
 
 peft-boft-dreambooth-toy-goose/
 
@@ -24,7 +24,7 @@ peft-boft-dreambooth-toy-goose/
 └── README.md
 
 
-##How to Reproduce (Windows 11)
+## How to Reproduce (Windows 11)
 
 ```bash
 1. Clone this repo
