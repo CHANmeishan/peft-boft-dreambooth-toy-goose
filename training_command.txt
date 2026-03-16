@@ -1,0 +1,82 @@
+C:\Users\User\peft\examples\boft_dreambooth
+
+(peft) C:\Users\User\peft\examples\boft_dreambooth>accelerate config
+-----------------------------------------------------------------------------------------------------------------------In which compute environment are you running?
+This machine
+-----------------------------------------------------------------------------------------------------------------------Which type of machine are you using?
+No distributed training
+Do you want to run your training on CPU only (even if a GPU / Apple Silicon / Ascend NPU device is available)? [yes/NO]:no
+Do you wish to optimize your script with torch dynamo?[yes/NO]:yes --> NO!
+-----------------------------------------------------------------------------------------------------------------------Which dynamo backend would you like to use?
+inductor
+Do you want to customize the defaults sent to torch.compile? [yes/NO]: yes --> NO!
+-----------------------------------------------------------------------------------------------------------------------Which mode do you want to use?
+default
+Do you want the fullgraph mode or it is ok to break model into several subgraphs? [yes/NO]: yes --> NO!
+Do you want to enable dynamic shape tracing? [yes/NO]: yes --> NO!
+Do you want to enable regional compilation? [yes/NO]: yes --> NO!
+Do you want to use DeepSpeed? [yes/NO]: no
+What GPU(s) (by id) should be used for training on this machine as a comma-separated list? [all]:all
+Would you like to enable numa efficiency? (Currently only supported on NVIDIA hardware). [yes/NO]: no
+-----------------------------------------------------------------------------------------------------------------------Do you wish to use mixed precision?
+fp16
+accelerate configuration saved at C:\Users\User/.cache\huggingface\accelerate\default_config.yaml
+
+
+
+boft_dreambooth:
+accelerate launch train_dreambooth.py ^
+  --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" ^
+  --instance_data_dir="./data/dreambooth/dataset/goose_toy" ^
+  --class_data_dir="./data/class_data/goose_toy" ^
+  --output_dir="./data/output/boft" ^
+  --wandb_project_name="dreambooth_boft" ^
+  --wandb_run_name="goose_toy_1_boft_80" ^
+  --with_prior_preservation --prior_loss_weight=1.0 ^
+  --instance_prompt="a photo of a cms goose" ^
+  --class_prompt="a photo of goose" ^
+  --validation_prompt="a photo of a cms goose in the jungle. a photo of a cms goose in the snow. a photo of a cms goose on the beach." ^
+  --resolution=512 ^
+  --train_batch_size=2 ^
+  --num_dataloader_workers=0 ^
+  --lr_scheduler="constant" ^
+  --lr_warmup_steps=0 ^
+  --num_class_images=200 ^
+  --use_boft ^
+  --boft_block_num=8 ^
+  --boft_block_size=0 ^
+  --boft_n_butterfly_factor=1 ^
+  --boft_dropout=0.1 ^
+  --boft_bias="none" ^
+  --learning_rate=3e-5 ^
+  --max_train_steps=610 ^
+  --checkpointing_steps=150 ^
+  --validation_steps=150 ^
+  --report_to="wandb"
+
+
+dreambooth:
+accelerate launch train_dreambooth.py ^
+  --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" ^
+  --instance_data_dir="./data/dreambooth/dataset/goose_toy" ^
+  --class_data_dir="./data/class_data/goose_toy" ^
+  --output_dir="./data/output/db" ^
+  --wandb_project_name="dreambooth_boft" ^
+  --wandb_run_name="goose_toy_1_db_80" ^
+  --with_prior_preservation --prior_loss_weight=1.0 ^
+  --instance_prompt="a photo of a cms goose" ^
+  --class_prompt="a photo of goose" ^
+  --validation_prompt="a photo of a cms goose in the jungle. a photo of a cms goose in the snow. a photo of a cms goose on the beach." ^
+  --resolution=512 ^
+  --train_batch_size=2 ^
+  --num_dataloader_workers=0 ^
+  --lr_scheduler="constant" ^
+  --lr_warmup_steps=0 ^
+  --num_class_images=200 ^
+  --learning_rate=3e-5 ^
+  --max_train_steps=610 ^
+  --checkpointing_steps=150 ^
+  --validation_steps=150 ^
+  --mixed_precision="bf16" ^
+  --report_to="wandb"
+
