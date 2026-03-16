@@ -8,20 +8,8 @@ Parameter-efficient fine-tuning of Stable Diffusion v1.5 using BOFT (Butterfly O
 Fine-tuned `runwayml/stable-diffusion-v1-5` using \*\*Butterfly Orthogonal Fine-Tuning (BOFT)\*\* from Hugging Face PEFT for subject-driven image generation.
 
 - Subject: Toy goose (white fur + red scarf)
-- Trainable parameters: 11.75M (1.35% of total)
 - Training steps: 610
 
-
-## Repository Structure
-
-peft-boft-dreambooth-toy-goose/
-
-├── train\_dreambooth.py
-├── train\_dreambooth\_windows.sh     # Windows version
-├── requirements.txt
-├── dreambooth\_inference.ipynb
-├── loss\_curve.png
-└── README.md
 
 
 ## How to Reproduce (Windows 11)
